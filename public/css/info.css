@@ -1,0 +1,92 @@
+/* Pozicioniranje info containera s lijeve strane u kojem se nalazi prikaz aktivnih chat roomova i korisnika u trenutnom chat roomu */
+.info-container {
+  position: absolute;
+  left: 15rem;
+  top: 21rem;
+  width: 280px;
+  z-index: 10;
+}
+
+/* Dizajn za info container*/
+.info-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #4a5568;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  min-height: 200px;
+  width: 280px;
+  transition: all 0.3s ease;
+}
+
+/* Unutar containera */
+.user-list,
+.room-list {
+  color: #e2e8f0;
+  background-color: transparent;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  margin: 0;
+  display: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* Users in room & active rooms*/
+.list-header {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 0.25rem;
+  color: #f7fafc;
+  user-select: none;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+/* prelazak mišem preko users in room & active rooms */
+.list-header:hover {
+  color: #ffffff;
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 6px rgba(255, 255, 255, 0.2);
+  transform: translateX(2px);
+}
+
+/* ispis aktivnih chat roomova i korisnika */
+.list-items {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ispis roomova i korisnika, svaki posebno */
+.list-item {
+  padding: 0.25rem 0.5rem;
+  width: 100%;
+  border-radius: 4px;
+  margin: 0.1rem 0;
+  transition: background-color 0.2s ease;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #cbd5e0;
+}
+
+/* prelazak preko ispisanih roomova ili korisnika */
+.list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #e2e8f0;
+}
+
+/* nakon klika na roomove ili korisnike */
+.list-item:active {
+  transform: translateX(2px);
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ako su liste prazne ne prikazuj */
+.user-list:empty,
+.room-list:empty {
+  display: none;
+}

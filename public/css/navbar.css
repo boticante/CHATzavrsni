@@ -1,0 +1,127 @@
+/* Navbar iznad chat displaya */
+.chat-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(135deg, var(--dark-bg-2) 0%, var(--dark-bg-1) 100%);
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  margin: -0.5rem -0.5rem 0 -0.5rem;
+  flex-shrink: 0;
+}
+
+/* Raspored */
+.chat-navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  min-height: 60px;
+}
+
+/* Logo (lijevo) */
+.chat-logo-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Prelazak preko logo-a*/
+.chat-logo-section:hover {
+  transform: scale(1.02);
+  user-select: none;
+}
+
+/* Logo oblik */
+.chat-bubble-icon,
+.chat-title {
+  font-size: 1.6rem;
+  color: var(--text-primary);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+/* Naslov CHAT */
+.chat-title {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.chat-logo-section:hover .chat-bubble-icon,
+.chat-logo-section:hover .chat-title {
+  color: #f7fafc;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7), 0 0 8px rgba(255, 255, 255, 0.2);
+  letter-spacing: 1px;
+}
+
+/* Room info (desno) (u roomu ili izvan rooma) dizajn*/
+.chat-room-info {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+/* Prelazak preko*/
+.chat-room-info:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Status tekst */
+.room-status {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  transition: all 0.3s ease;
+}
+
+.room-status.in-room {
+  color: #68d391;
+  font-weight: 600;
+}
+
+.room-status.in-room:hover {
+  color: #9ae6b4;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 6px rgba(104, 211, 145, 0.4);
+}
+
+.room-status.not-in-room {
+  color: #fc8181;
+  font-weight: 600;
+}
+
+.room-status.not-in-room:hover {
+  color: #feb2b2;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7), 0 0 6px rgba(252, 129, 129, 0.4);
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 0.5rem;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.chat-messages::after {
+  content: "";
+  display: block;
+  height: 10px;
+  flex-shrink: 0;
+}
