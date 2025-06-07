@@ -144,10 +144,11 @@ function buildMsg(name, text) {
   return {
     name,
     text,
-    time: new Intl.DateTimeFormat("default", {
-      hour: "numeric",
-      minute: "numeric",
-    }).format(new Date()),
+    time: new Date().toLocaleTimeString("en-GB", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }),
   };
 }
 

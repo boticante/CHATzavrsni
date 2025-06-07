@@ -134,10 +134,11 @@ function enterRoom() {
         {
           name: "Admin",
           text: `You need to leave the current room "${currentRoom}" before joining "${chatRoom.value}"`,
-          time: new Intl.DateTimeFormat("default", {
-            hour: "numeric",
-            minute: "numeric",
-          }).format(new Date()),
+          time: new Date().toLocaleTimeString("en-GB", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+    }),
         },
         true
       );
@@ -149,10 +150,11 @@ function enterRoom() {
         {
           name: "Admin",
           text: `You are already in room "${chatRoom.value}"`,
-          time: new Intl.DateTimeFormat("default", {
-            hour: "numeric",
-            minute: "numeric",
-          }).format(new Date()),
+         time: new Date().toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+    }),
         },
         true
       );
@@ -193,10 +195,11 @@ function leaveRoom() {
       {
         name: "Admin",
         text: "You are currently not in a room",
-        time: new Intl.DateTimeFormat("default", {
-          hour: "numeric",
-          minute: "numeric",
-        }).format(new Date()),
+        time: new Date().toLocaleTimeString("en-GB", {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+    }),
       },
       true
     );
