@@ -1,15 +1,15 @@
 const socket = io();
 
-// Connects to the Socket.IO server for real-time chat
-const msgInput = document.querySelector("#message"); // Input field for typing messages
-const nameInput = document.querySelector("#name"); // Input field for user's name
-const chatRoom = document.querySelector("#room"); // Input field for chat room name
-const chatDisplay = document.querySelector(".chat-messages"); // Area where messages are shown
-const clearButton = document.querySelector("#clear"); // Button to clear chat messages
-const joinButton = document.querySelector("#join"); // Button to join a chat room
-const leaveButton = document.querySelector("#leave"); // Button to leave a chat room
-const usersList = document.querySelector(".user-list"); // List of users in the room
-const roomList = document.querySelector(".room-list"); // List of active rooms
+// 
+const msgInput = document.querySelector("#message"); 
+const nameInput = document.querySelector("#name"); 
+const chatRoom = document.querySelector("#room"); 
+const chatDisplay = document.querySelector(".chat-messages");
+const clearButton = document.querySelector("#clear"); 
+const joinButton = document.querySelector("#join"); 
+const leaveButton = document.querySelector("#leave"); 
+const usersList = document.querySelector(".user-list");
+const roomList = document.querySelector(".room-list"); 
 const currentRoomDisplay = document.querySelector(
   "#current-room-display .room-status"
 ); // Displays the current room name
@@ -18,7 +18,7 @@ let userInRoom = false;
 let currentRoom = "";
 let lastActivityElement = null;
 
-// Saves user's name and room to local storage
+// 
 function saveUserState() {
   if (userInRoom && currentRoom && nameInput.value) {
     localStorage.setItem(
@@ -34,7 +34,7 @@ function saveUserState() {
   }
 }
 
-// Loads user's saved name and room, and joins the room if applicable
+// 
 function loadUserState() {
   const savedState = localStorage.getItem("chatUserState");
   if (savedState) {
@@ -58,7 +58,7 @@ function loadUserState() {
   }
 }
 
-// Updates the navbar to show the current room status
+// 
 function updateNavbarRoomStatus() {
   if (userInRoom && currentRoom) {
     currentRoomDisplay.textContent = `Room: ${currentRoom}`;
@@ -69,7 +69,7 @@ function updateNavbarRoomStatus() {
   }
 }
 
-// Shows or hides user and room lists based on their content
+// 
 function updateListVisibility() {
   const userListEmpty = !usersList.textContent.trim();
   const roomListEmpty = !roomList.textContent.trim();
@@ -79,7 +79,7 @@ function updateListVisibility() {
     userListEmpty && roomListEmpty ? "none" : "flex";
 }
 
-// Saves a message to the room's message history in local storage
+// 
 function saveMessageToRoom(roomName, messageData) {
   const savedRooms = JSON.parse(localStorage.getItem("chatRooms") || "{}");
   if (!savedRooms[roomName]) {
@@ -89,13 +89,13 @@ function saveMessageToRoom(roomName, messageData) {
   localStorage.setItem("chatRooms", JSON.stringify(savedRooms));
 }
 
-// Loads saved messages for a specific room
+// 
 function loadRoomMessages(roomName) {
   const savedRooms = JSON.parse(localStorage.getItem("chatRooms") || "{}");
   return savedRooms[roomName] || [];
 }
 
-// Displays a message in the chat window
+// 
 function displayMessage(data, skipSave = false) {
   const { name, text, time } = data;
   const li = document.createElement("li");
@@ -126,7 +126,7 @@ function displayMessage(data, skipSave = false) {
   }
 }
 
-// Handles joining a chat room
+// 
 function enterRoom() {
   if (nameInput.value && chatRoom.value) {
     if (userInRoom && currentRoom !== chatRoom.value) {
@@ -178,7 +178,7 @@ function enterRoom() {
   }
 }
 
-// Handles leaving a chat room
+// 
 function leaveRoom() {
   if (userInRoom) {
     socket.emit("leaveRoom");
@@ -206,7 +206,7 @@ function leaveRoom() {
   }
 }
 
-// Clears the chat display and message history for the current room
+// 
 function clearChat() {
   chatDisplay.innerHTML = "";
   lastActivityElement = null;
@@ -217,7 +217,7 @@ function clearChat() {
   }
 }
 
-// Displays the list of users in the current room
+// 
 function showUsers(users) {
   usersList.textContent = "";
   if (users && users.length > 0 && userInRoom) {
@@ -235,7 +235,7 @@ function showUsers(users) {
   updateListVisibility();
 }
 
-// Displays the list of active rooms
+// 
 function showRooms(rooms) {
   roomList.textContent = "";
   if (rooms && rooms.length > 0 && userInRoom) {
@@ -253,7 +253,7 @@ function showRooms(rooms) {
   updateListVisibility();
 }
 
-// Sends a message to the server
+// 
 function sendMessage(e) {
   e.preventDefault();
   if (lastActivityElement) {

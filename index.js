@@ -11,12 +11,12 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
 
-// Starts the Express server to listen for connections
+// 
 const expressServer = app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
 
-// Stores the list of users and a method to update it
+// 
 const UsersState = {
   users: [],
   setUsers: function (newUsersArray) {
@@ -24,7 +24,7 @@ const UsersState = {
   },
 };
 
-// Sets up the Socket.IO server for real-time communication
+//
 const io = new Server(expressServer, {
   cors: {
     origin:
@@ -139,7 +139,7 @@ io.on("connection", (socket) => {
   });
 });
 
-// Creates a formatted message object with name, text, and timestamp
+// 
 function buildMsg(name, text) {
   return {
     name,
@@ -152,7 +152,7 @@ function buildMsg(name, text) {
   };
 }
 
-// Adds or updates a user in the chat with their ID, name, and room
+// 
 function activateUser(id, name, room) {
   const user = { id, name, room };
   UsersState.setUsers([
@@ -162,22 +162,22 @@ function activateUser(id, name, room) {
   return user;
 }
 
-// Removes a user from the chat by their ID
+//
 function userLeavesApp(id) {
   UsersState.setUsers(UsersState.users.filter((user) => user.id !== id));
 }
 
-// Finds a user by their ID
+// 
 function getUser(id) {
   return UsersState.users.find((user) => user.id === id);
 }
 
-// Gets all users in a specific room
+// 
 function getUsersInRoom(room) {
   return UsersState.users.filter((user) => user.room === room);
 }
 
-// Returns a list of all active chat rooms
+// 
 function getAllActiveRooms() {
   return Array.from(new Set(UsersState.users.map((user) => user.room)));
 }
