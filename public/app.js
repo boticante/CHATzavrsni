@@ -1,24 +1,22 @@
 const socket = io();
 
-// 
-const msgInput = document.querySelector("#message"); 
-const nameInput = document.querySelector("#name"); 
-const chatRoom = document.querySelector("#room"); 
+const msgInput = document.querySelector("#message");
+const nameInput = document.querySelector("#name");
+const chatRoom = document.querySelector("#room");
 const chatDisplay = document.querySelector(".chat-messages");
-const clearButton = document.querySelector("#clear"); 
-const joinButton = document.querySelector("#join"); 
-const leaveButton = document.querySelector("#leave"); 
+const clearButton = document.querySelector("#clear");
+const joinButton = document.querySelector("#join");
+const leaveButton = document.querySelector("#leave");
 const usersList = document.querySelector(".user-list");
-const roomList = document.querySelector(".room-list"); 
+const roomList = document.querySelector(".room-list");
 const currentRoomDisplay = document.querySelector(
   "#current-room-display .room-status"
-); // Displays the current room name
+);
 
 let userInRoom = false;
 let currentRoom = "";
 let lastActivityElement = null;
 
-// 
 function saveUserState() {
   if (userInRoom && currentRoom && nameInput.value) {
     localStorage.setItem(
@@ -34,7 +32,6 @@ function saveUserState() {
   }
 }
 
-// 
 function loadUserState() {
   const savedState = localStorage.getItem("chatUserState");
   if (savedState) {
@@ -45,6 +42,8 @@ function loadUserState() {
     if (userState.inRoom) {
       userInRoom = true;
       currentRoom = userState.room;
+      nameInput.disabled = true;
+      chatRoom.disabled = true;
       updateNavbarRoomStatus();
       chatDisplay.innerHTML = "";
       loadRoomMessages(currentRoom).forEach((message) => {
@@ -58,7 +57,6 @@ function loadUserState() {
   }
 }
 
-// 
 function updateNavbarRoomStatus() {
   if (userInRoom && currentRoom) {
     currentRoomDisplay.textContent = `Room: ${currentRoom}`;
@@ -69,7 +67,6 @@ function updateNavbarRoomStatus() {
   }
 }
 
-// 
 function updateListVisibility() {
   const userListEmpty = !usersList.textContent.trim();
   const roomListEmpty = !roomList.textContent.trim();
@@ -79,7 +76,6 @@ function updateListVisibility() {
     userListEmpty && roomListEmpty ? "none" : "flex";
 }
 
-// 
 function saveMessageToRoom(roomName, messageData) {
   const savedRooms = JSON.parse(localStorage.getItem("chatRooms") || "{}");
   if (!savedRooms[roomName]) {
@@ -89,13 +85,11 @@ function saveMessageToRoom(roomName, messageData) {
   localStorage.setItem("chatRooms", JSON.stringify(savedRooms));
 }
 
-// 
 function loadRoomMessages(roomName) {
   const savedRooms = JSON.parse(localStorage.getItem("chatRooms") || "{}");
   return savedRooms[roomName] || [];
 }
 
-// 
 function displayMessage(data, skipSave = false) {
   const { name, text, time } = data;
   const li = document.createElement("li");
@@ -126,7 +120,6 @@ function displayMessage(data, skipSave = false) {
   }
 }
 
-// 
 function enterRoom() {
   if (nameInput.value && chatRoom.value) {
     if (userInRoom && currentRoom !== chatRoom.value) {
@@ -134,11 +127,10 @@ function enterRoom() {
         {
           name: "Admin",
           text: `You need to leave the current room "${currentRoom}" before joining "${chatRoom.value}"`,
-          time: new Date().toLocaleTimeString("en-GB", {
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: false,
-    }),
+          time: new Intl.DateTimeFormat("default", {
+            hour: "numeric",
+            minute: "numeric",
+          }).format(new Date()),
         },
         true
       );
@@ -150,11 +142,10 @@ function enterRoom() {
         {
           name: "Admin",
           text: `You are already in room "${chatRoom.value}"`,
-         time: new Date().toLocaleTimeString("en-GB", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-    }),
+          time: new Intl.DateTimeFormat("default", {
+            hour: "numeric",
+            minute: "numeric",
+          }).format(new Date()),
         },
         true
       );
@@ -174,39 +165,42 @@ function enterRoom() {
 
     userInRoom = true;
     currentRoom = chatRoom.value;
+    nameInput.disabled = true; // Zaključaj ime
+    chatRoom.disabled = true; // Zaključaj sobu
     saveUserState();
+    updateNavbarRoomStatus();
   }
 }
 
-// 
 function leaveRoom() {
   if (userInRoom) {
     socket.emit("leaveRoom");
     userInRoom = false;
     currentRoom = "";
+    nameInput.disabled = false; // Otključaj ime
+    chatRoom.disabled = false; // Otključaj sobu
     updateNavbarRoomStatus();
     usersList.textContent = "";
     roomList.textContent = "";
     updateListVisibility();
     saveUserState();
     lastActivityElement = null;
+    chatDisplay.innerHTML = "";
   } else {
     displayMessage(
       {
         name: "Admin",
         text: "You are currently not in a room",
-        time: new Date().toLocaleTimeString("en-GB", {
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-    }),
+        time: new Intl.DateTimeFormat("default", {
+          hour: "numeric",
+          minute: "numeric",
+        }).format(new Date()),
       },
       true
     );
   }
 }
 
-// 
 function clearChat() {
   chatDisplay.innerHTML = "";
   lastActivityElement = null;
@@ -217,7 +211,6 @@ function clearChat() {
   }
 }
 
-// 
 function showUsers(users) {
   usersList.textContent = "";
   if (users && users.length > 0 && userInRoom) {
@@ -235,7 +228,6 @@ function showUsers(users) {
   updateListVisibility();
 }
 
-// 
 function showRooms(rooms) {
   roomList.textContent = "";
   if (rooms && rooms.length > 0 && userInRoom) {
@@ -253,14 +245,13 @@ function showRooms(rooms) {
   updateListVisibility();
 }
 
-// 
 function sendMessage(e) {
   e.preventDefault();
   if (lastActivityElement) {
     lastActivityElement.remove();
     lastActivityElement = null;
   }
-  if (nameInput.value && msgInput.value && chatRoom.value) {
+  if (nameInput.value && msgInput.value && chatRoom.value && userInRoom) {
     socket.emit("message", {
       name: nameInput.value,
       text: msgInput.value,
@@ -296,6 +287,8 @@ socket.on("message", (data) => {
     );
     if (roomMatch) {
       currentRoom = roomMatch[1];
+      nameInput.disabled = true; // Zaključaj ime
+      chatRoom.disabled = true; // Zaključaj sobu
       updateNavbarRoomStatus();
       saveUserState();
     }
@@ -304,6 +297,8 @@ socket.on("message", (data) => {
   if (data.name === "Admin" && data.text.includes("You have left the")) {
     userInRoom = false;
     currentRoom = "";
+    nameInput.disabled = false; // Otključaj ime
+    chatRoom.disabled = false; // Otključaj sobu
     updateNavbarRoomStatus();
     saveUserState();
   }
