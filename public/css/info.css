@@ -1,9 +1,7 @@
 /* Pozicioniranje info containera s lijeve strane u kojem se nalazi prikaz aktivnih chat roomova i korisnika u trenutnom chat roomu */
 .info-container {
-  position: absolute;
-  left: 15rem;
-  top: 21rem;
-  width: 280px;
+  width: 100%;
+  max-width: 280px;
   z-index: 10;
 }
 
@@ -16,7 +14,8 @@
   padding: 1.5rem;
   border-radius: 12px;
   border: 1px solid #4a5568;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
   min-height: 200px;
   width: 280px;
   transition: all 0.3s ease;
@@ -89,4 +88,78 @@
 .user-list:empty,
 .room-list:empty {
   display: none;
+}
+
+/* Mobile responsive positioning */
+@media (max-width: 991px) {
+  .info-container {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .info-inputs {
+    max-width: 260px;
+    width: 100%;
+  }
+}
+
+/* Dodatno za manje desktop ekrane */
+@media (max-width: 1100px) and (min-width: 992px) {
+  .info-inputs {
+    padding: 1.2rem;
+    min-height: 180px;
+    width: 280px; /* Konzistentnost s desktop verzijom */
+  }
+}
+
+@media (max-width: 767px) {
+  .info-container {
+    max-width: 240px;
+  }
+
+  .info-inputs {
+    padding: 0.6rem;
+    border-radius: 6px;
+    min-height: auto;
+    max-width: 240px;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+  }
+
+  .list-header {
+    font-size: 0.75rem;
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.15rem;
+  }
+
+  .list-item {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    margin: 0.05rem 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .info-container {
+    max-width: 200px;
+  }
+
+  .info-inputs {
+    padding: 0.5rem;
+    border-radius: 4px;
+    max-width: 200px;
+    gap: 0.3rem;
+  }
+
+  .list-header {
+    font-size: 0.7rem;
+    margin-bottom: 0.25rem;
+    padding-bottom: 0.1rem;
+  }
+
+  .list-item {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.35rem;
+    margin: 0.03rem 0;
+  }
 }

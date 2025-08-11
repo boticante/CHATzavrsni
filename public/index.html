@@ -19,7 +19,9 @@
   <link href="css/join.css" rel="stylesheet">
   <link href="css/messages.css" rel="stylesheet">
   <link href="css/navbar.css" rel="stylesheet">
-  
+
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.8.1/socket.io.min.js" crossorigin="anonymous"></script>
   <script defer src="app.js"></script>
 
@@ -27,47 +29,53 @@
 
 <body background="pic/bg1.jpg">
   <main>
-    <div class="join-container">
-      <div class="join-inputs">
-        <input type="text" id="name" maxlength="8" placeholder="Your name" required>
-        <input type="text" id="room" placeholder="Chat room" required>
-        <button id="join" type="submit">Join</button>
-        <button id="leave" type="submit">Leave</button>
-      </div>
-    </div>
-
-    <div class="info-container">
-      <div class="info-inputs">
-        <p class="user-list"></p>
-        <p class="room-list"></p>
-      </div>
-    </div>
-
-    <div class="chat-display">
-      <div class="chat-navbar">
-        <div class="chat-navbar-content">
-          <div class="chat-logo-section">
-            <span id="chat_bubble_main" class="material-symbols-outlined chat-bubble-icon">chat_bubble</span>
-            <div class="chat-title">CHAT</div>
-          </div>
-          <div class="chat-room-info" id="current-room-display">
-            <span class="room-status">Not in room</span>
-          </div>
+    <!-- Lijevi side kontejneri -->
+    <div class="side-containers">
+      <div class="join-container">
+        <div class="join-inputs">
+          <input type="text" id="name" maxlength="8" placeholder="Your name" required>
+          <input type="text" id="room" placeholder="Chat room" required>
+          <button id="join" type="submit">Join</button>
+          <button id="leave" type="submit">Leave</button>
         </div>
       </div>
-      <ul class="chat-messages"></ul>
+
+      <div class="info-container">
+        <div class="info-inputs">
+          <p class="user-list"></p>
+          <p class="room-list"></p>
+        </div>
+      </div>
     </div>
 
-    <div class="message-controls">
-      <form class="form-msg">
-        <input type="text" id="message" placeholder="Your message" required>
-        <button type="submit">
-          <span class="material-symbols-outlined">send</span>
-        </button>
-        <button id="clear" type="button">
-          <span class="material-symbols-outlined">delete</span>
-        </button>
-      </form>
+    <!-- Glavni chat kontejner -->
+    <div class="chat-container">
+      <div class="chat-display">
+        <div class="chat-navbar">
+          <div class="chat-navbar-content">
+            <div class="chat-logo-section">
+              <span id="chat_bubble_main" class="material-symbols-outlined chat-bubble-icon">chat_bubble</span>
+              <div class="chat-title">CHAT</div>
+            </div>
+            <div class="chat-room-info" id="current-room-display">
+              <span class="room-status">Not in room</span>
+            </div>
+          </div>
+        </div>
+        <ul class="chat-messages"></ul>
+      </div>
+
+      <div class="message-controls">
+        <form class="form-msg">
+          <input type="text" id="message" placeholder="Your message" required>
+          <button type="submit">
+            <span class="material-symbols-outlined">send</span>
+          </button>
+          <button id="clear" type="button">
+            <span class="material-symbols-outlined">delete</span>
+          </button>
+        </form>
+      </div>
     </div>
 
   </main>
