@@ -1,11 +1,9 @@
-/* Pozicioniranje poruka */
 .post {
   margin: 0.7rem 0.5rem;
   max-width: calc(70% - 10px);
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dizajn prozora poruke koju šaljemo*/
 .post--left {
   align-self: flex-start;
   border-radius: 18px 18px 18px 4px;
@@ -15,7 +13,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* Dizajn prozora poruke koju primamo */
 .post--right {
   align-self: flex-end;
   border-radius: 18px 18px 4px 18px;
@@ -25,7 +22,6 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-/* Dizajn poruka admina (npr. kada korisnik izađe ili uđe u sobu) */
 .post--admin {
   width: calc(100% - 10px);
   align-self: center;
@@ -36,7 +32,6 @@
   border: none;
 }
 
-/* Naziv korisnika koji šalje poruku */
 .post__header {
   color: #e2e8f0;
   padding: 0.5rem 1rem 0.25rem;
@@ -47,21 +42,18 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Prikazano ime korisnika */
 .post__header--name {
   font-weight: 600;
   letter-spacing: 0.025em;
   color: #f7fafc;
 }
 
-/* Vrijeme poslane poruke */
 .post__header--time {
   font-size: 0.75rem;
   color: #cbd5e0;
   opacity: 0.8;
 }
 
-/* Tekst poruke */
 .post__text {
   padding: 0.5rem 1rem 0.75rem;
   color: #e2e8f0;
@@ -70,7 +62,6 @@
   font-weight: 400;
 }
 
-/* Admin poruke */
 .admin-message {
   color: #cbd5e0;
   background-color: transparent;
@@ -82,14 +73,12 @@
   opacity: 0.9;
 }
 
-/* Prelazak preko prozora poruke */
 .post:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* Prelazak preko admin poruka*/
 .post--admin:hover {
   transform: none;
   box-shadow: none;

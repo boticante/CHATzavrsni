@@ -5,7 +5,6 @@
   font-family: "Open Sans", sans-serif;
 }
 
-/* Boje (pozadina,tekst)*/
 :root {
   --dark-bg-1: #1a202c;
   --dark-bg-2: #2d3748;
@@ -21,12 +20,11 @@ body {
   background-color: #0f141e;
 }
 
-/* Main layout container */
 main {
   display: flex;
 
   min-height: 100vh;
-  padding: 2rem 1rem; /* Dodano top padding da spusti sve niže */
+  padding: 2rem 1rem;
   align-items: flex-start;
   justify-content: center;
   max-width: 1600px;
@@ -34,7 +32,6 @@ main {
   width: 100%;
 }
 
-/* Side containers wrapper */
 .side-containers {
   display: flex;
   flex-direction: column;
@@ -43,7 +40,6 @@ main {
   flex-shrink: 0;
 }
 
-/* Main chat container */
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -55,7 +51,6 @@ main {
   margin: 0 auto;
 }
 
-/* Chat display styling */
 .chat-display {
   background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
   border-radius: 12px;
@@ -65,11 +60,10 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 700px; /* Povećano s 600px na 700px */
+  min-height: 700px;
   width: 100%;
 }
 
-/* Chat messages container */
 .chat-messages {
   flex: 1;
   overflow-y: auto;
@@ -77,22 +71,20 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  min-height: 700px; /* Povećano s 500px na 600px */
-  max-height: 900px; /* Povećano s 700px na 800px */
+  min-height: 700px;
+  max-height: 900px; 
   width: 100%;
 }
 
-/* Message controls positioning */
 .message-controls {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 0 1rem;
-  max-width: 1000px; /* Ista širina kao chat-container */
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-/* Form styling */
 .form-msg {
   display: flex;
   gap: 0.5rem;
@@ -114,7 +106,6 @@ main {
   justify-content: center;
 }
 
-/* Welcome message */
 .welcome-message {
   text-align: center;
   color: #a0aec0;
@@ -124,13 +115,13 @@ main {
 
 @media (max-width: 1540px) {
   .chat-display {
-    min-height: 480px; /* Smanjeno s 600px */
+    min-height: 480px; 
   }
 
   .chat-messages {
-    min-height: 250px; /* Smanjeno s 500px */
-    max-height: 550px; /* Smanjeno s 700px */
-    padding: 1.2rem; /* Smanjeno s 1.5rem */
+    min-height: 250px; 
+    max-height: 550px; 
+    padding: 1.2rem; 
   }
 
   .message-controls {
@@ -139,11 +130,11 @@ main {
   }
 
   .form-msg {
-    max-width: 700px; /* Smanjeno s 800px */
+    max-width: 700px;
   }
 }
 
-/* Responsive layout */
+/* RESPONZIVNOST */
 @media (max-width: 991px) {
   main {
     flex-direction: column;
@@ -172,13 +163,13 @@ main {
   }
 
   .chat-display {
-    min-height: 450px; /* Smanjeno s 500px */
+    min-height: 450px; 
     width: 100%;
   }
 
   .chat-messages {
-    min-height: 320px; /* Smanjeno s 400px */
-    max-height: 420px; /* Smanjeno s 500px */
+    min-height: 320px; 
+    max-height: 420px; 
     padding: 1rem;
   }
 
@@ -212,14 +203,14 @@ main {
 
   .chat-display {
     border-radius: 8px;
-    min-height: 380px; /* Smanjeno s 400px */
+    min-height: 380px; 
     width: 100%;
   }
 
   .chat-messages {
     padding: 1rem;
-    min-height: 260px; /* Smanjeno s 300px */
-    max-height: 360px; /* Smanjeno s 400px */
+    min-height: 260px;
+    max-height: 360px;
   }
 
   .form-msg {
@@ -240,13 +231,13 @@ main {
 
   .chat-display {
     border-radius: 6px;
-    min-height: 320px; /* Smanjeno s 350px */
+    min-height: 320px;
   }
 
   .chat-messages {
     padding: 0.75rem;
-    min-height: 220px; /* Smanjeno s 250px */
-    max-height: 300px; /* Smanjeno s 350px */
+    min-height: 450px; 
+    max-height: 300px; 
   }
 
   .message-controls {

@@ -90,7 +90,6 @@
   display: none;
 }
 
-/* Mobile responsive positioning */
 @media (max-width: 991px) {
   .info-container {
     max-width: 260px;
@@ -103,12 +102,11 @@
   }
 }
 
-/* Dodatno za manje desktop ekrane */
 @media (max-width: 1100px) and (min-width: 992px) {
   .info-inputs {
     padding: 1.2rem;
     min-height: 180px;
-    width: 280px; /* Konzistentnost s desktop verzijom */
+    width: 280px;
   }
 }
 
