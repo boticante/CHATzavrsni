@@ -18,14 +18,12 @@
 body {
   color: var(--text-primary);
   background-color: #0f141e;
-  height: 100vh;
-  overflow: hidden;
 }
 
 main {
   display: flex;
-  height: 100vh;
-  overflow: hidden;
+
+  min-height: 100vh;
   padding: 2rem 1rem;
   align-items: flex-start;
   justify-content: center;
@@ -58,7 +56,6 @@ main {
   border-radius: 12px;
   border: 1px solid #4a5568;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  height: calc(100vh - 4rem);
   overflow: hidden;
   flex: 1;
   display: flex;
@@ -74,6 +71,8 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  min-height: 700px;
+  max-height: 900px; 
   width: 100%;
 }
 
