@@ -18,18 +18,23 @@
 body {
   color: var(--text-primary);
   background-color: #0f141e;
+  /* Fixed body height to prevent page scrolling */
+  height: 100vh;
+  overflow: hidden;
 }
 
 main {
   display: flex;
-
-  min-height: 100vh;
+  /* Fixed main height to viewport height */
+  height: 100vh;
   padding: 2rem 1rem;
   align-items: flex-start;
   justify-content: center;
   max-width: 1600px;
   margin: 0 auto;
   width: 100%;
+  /* Prevent main from overflowing */
+  overflow: hidden;
 }
 
 .side-containers {
@@ -49,6 +54,8 @@ main {
   width: 100%;
   gap: 1rem;
   margin: 0 auto;
+  /* Fixed height to prevent overflow */
+  height: calc(100vh - 4rem);
 }
 
 .chat-display {
@@ -60,7 +67,7 @@ main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  min-height: 700px;
+  /* Removed min-height and max-height to allow proper flex behavior */
   width: 100%;
 }
 
@@ -71,8 +78,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  min-height: 700px;
-  max-height: 900px; 
+  /* Removed min-height and max-height - let flex handle sizing */
   width: 100%;
 }
 
@@ -83,6 +89,8 @@ main {
   padding: 0 1rem;
   max-width: 1000px;
   margin: 0 auto;
+  /* Fixed height for message controls */
+  flex-shrink: 0;
 }
 
 .form-msg {
@@ -114,14 +122,8 @@ main {
 }
 
 @media (max-width: 1540px) {
-  .chat-display {
-    min-height: 480px; 
-  }
-
   .chat-messages {
-    min-height: 250px; 
-    max-height: 550px; 
-    padding: 1.2rem; 
+    padding: 1.2rem;
   }
 
   .message-controls {
@@ -141,6 +143,21 @@ main {
     gap: 1rem;
     padding: 0.5rem;
     max-width: 100%;
+    /* Allow scrolling on mobile if needed */
+    overflow: auto;
+  }
+
+  body {
+    /* Allow scrolling on mobile */
+    overflow: auto;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .chat-container {
+    /* Adjust height for mobile */
+    height: 60vh;
+    min-height: 400px;
   }
 
   .side-containers {
@@ -163,13 +180,10 @@ main {
   }
 
   .chat-display {
-    min-height: 450px; 
     width: 100%;
   }
 
   .chat-messages {
-    min-height: 320px; 
-    max-height: 420px; 
     padding: 1rem;
   }
 
@@ -199,18 +213,18 @@ main {
   .chat-container {
     width: 100%;
     max-width: 100%;
+    /* Smaller height on mobile */
+    height: 50vh;
+    min-height: 350px;
   }
 
   .chat-display {
     border-radius: 8px;
-    min-height: 380px; 
     width: 100%;
   }
 
   .chat-messages {
     padding: 1rem;
-    min-height: 260px;
-    max-height: 360px;
   }
 
   .form-msg {
@@ -231,13 +245,10 @@ main {
 
   .chat-display {
     border-radius: 6px;
-    min-height: 320px;
   }
 
   .chat-messages {
     padding: 0.75rem;
-    min-height: 450px; 
-    max-height: 300px; 
   }
 
   .message-controls {
